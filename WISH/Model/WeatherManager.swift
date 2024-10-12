@@ -11,7 +11,7 @@ import CoreLocation
 class WeatherManager {
     // HTTP request to get the current weather depending on the coordinates we got from LocationManager
     func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> WeatherBody {
-        guard let url = URL(string: "https://api.weatherapi.com/v1/current.json?key=bbf4cb5087124d55bc305920241210&q=\(latitude),\(longitude)&aqi=no")
+        guard let url = URL(string: "https://api.weatherapi.com/v1/current.json?key=bbf4cb5087124d55bc305920241210&q=\(latitude),\(longitude)&aqi=no&lang=ru")
         else { fatalError("Missing URL") }
 
         let urlRequest = URLRequest(url: url)

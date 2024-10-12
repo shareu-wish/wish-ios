@@ -9,6 +9,12 @@ import SwiftUI
 
 struct WeatherView: View {
     var weather: WeatherBody
+    var colorSceme: ColorScheme?
+    
+    init(weather: WeatherBody){
+        self.weather = weather
+        self.colorSceme = (weather.current.is_day == 0) ? .light : .dark
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -17,21 +23,35 @@ struct WeatherView: View {
                     Text(weather.location.name)
                         .bold()
                         .font(.title)
+                    Text("\(weather.location.region), \(weather.location.country)")
+                        .bold()
+                        .font(.subheadline)
                     
                     Text("Сегодня, \(Date().formatted(.dateTime.month().day().hour().minute()))")
                         .fontWeight(.light)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Spacer()
-                
                 VStack {
                     HStack {
-                        VStack(spacing: 20) {
-                            Image(systemName: "cloud")
-                                .font(.system(size: 40))
+                        
+                        AsyncImage(url: URL(string: "https:\(weather.current.condition.icon)")) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 64)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        
+                        Text(weather.current.condition.text)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
+                    HStack {
+                        VStack {
+                            WeatherRow(logo: "cloud", name: "Облачность", value: "\(weather.current.cloud) %")
                             
-                            Text("\(weather.current.cloud)")
                         }
                         .frame(width: 150, alignment: .leading)
                         
@@ -43,31 +63,10 @@ struct WeatherView: View {
                             .padding()
                     }
                     
-                    Spacer()
-                        .frame(height:  80)
-                    
-                    AsyncImage(url: URL(string: "https:\(weather.current.condition.icon)")) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 64)
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    
-                    Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            VStack {
-                Spacer()
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Погода сейчас")
-                        .bold()
-                        .padding(.bottom)
+                
+                VStack {
                     
                     HStack {
                         WeatherRow(logo: "thermometer", name: "Минимум", value: ((weather.current.temp_c - 1).roundDouble() + ("°")))
@@ -81,16 +80,29 @@ struct WeatherView: View {
                         WeatherRow(logo: "humidity", name: "Влажность", value: "\(weather.current.humidity)%")
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+            
+
+                VStack {
+                    Spacer()
+                    if (weather.current.humidity > 50) {
+                        Text("Возьмите с собой зонт")
+                            .bold()
+                            .font(.title)
+                    } else {
+                        Text("Дожди маловероятны")
+                            .bold()
+                            .font(.title)
+                    }
+                    Spacer()
+                }
                 .padding()
-                .padding(.bottom, 20)
-                .foregroundColor(Color(hue: 0.656, saturation: 0.787, brightness: 0.354))
-                .background(.white)
-                .cornerRadius(20, corners: [.topLeft, .topRight])
+                .frame(maxWidth: .infinity, alignment: .center)
+
             }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .edgesIgnoringSafeArea(.bottom)
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(colorSceme)
     }
 }
 

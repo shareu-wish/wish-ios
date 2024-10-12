@@ -17,23 +17,31 @@ struct TabWeatherView: View {
         VStack {
             if let location = locationManager.location {
                 if let weather = weather {
-                    WeatherView(weather: weather)
+                    NavigationView {
+                        WeatherView(weather: weather)
+                    }
                 } else {
-                    LoadingView()
-                        .task {
-                            do {
-                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                            } catch {
-                                print("Error getting weather: \(error)")
+                    NavigationView {
+                        LoadingView()
+                            .task {
+                                do {
+                                    weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                                } catch {
+                                    print("Error getting weather: \(error)")
+                                }
                             }
-                        }
+                    }
                 }
             } else {
                 if locationManager.isLoading {
-                    LoadingView()
+                    NavigationView {
+                        LoadingView()
+                    }
                 } else {
-                    WelcomeView()
-                        .environmentObject(locationManager)
+                    NavigationView {
+                        WelcomeView()
+                            .environmentObject(locationManager)
+                    }
                 }
             }
         }

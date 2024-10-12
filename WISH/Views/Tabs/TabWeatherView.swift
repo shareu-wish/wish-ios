@@ -1,14 +1,14 @@
 //
-//  ContentView.swift
-//  WISHApp
+//  TabWeatherView.swift
+//  WISH
 //
-//  Created by Sergey Lavorv on 2024-10-12.
+//  Created by Sergey on 12.10.2024.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    // Replace YOUR_API_KEY in WeatherManager with your own API key for the app to work
+struct TabWeatherView: View {
+    
     @StateObject var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: WeatherBody?
@@ -41,9 +41,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    TabWeatherView()
 }
-

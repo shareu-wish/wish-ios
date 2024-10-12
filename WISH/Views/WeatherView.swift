@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WeatherView: View {
-    // Replace YOUR_API_KEY in WeatherManager with your own API key for the app to work
     var weather: WeatherBody
     
     var body: some View {
@@ -51,7 +50,7 @@ struct WeatherView: View {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 350)
+                            .frame(width: 64)
                     } placeholder: {
                         ProgressView()
                     }

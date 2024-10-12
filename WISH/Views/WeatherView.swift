@@ -9,13 +9,13 @@ import SwiftUI
 
 struct WeatherView: View {
     // Replace YOUR_API_KEY in WeatherManager with your own API key for the app to work
-    var weather: ResponseBody
+    var weather: WeatherBody
     
     var body: some View {
         ZStack(alignment: .leading) {
             VStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(weather.name)
+                    Text(weather.location.name)
                         .bold()
                         .font(.title)
                     
@@ -32,31 +32,31 @@ struct WeatherView: View {
                             Image(systemName: "cloud")
                                 .font(.system(size: 40))
                             
-                            Text("\(weather.weather[0].main)")
+                            Text("\(weather.current.cloud)")
                         }
                         .frame(width: 150, alignment: .leading)
                         
                         Spacer()
                         
-                        Text(weather.main.feelsLike.roundDouble() + "°")
+                        Text(weather.current.feelslike_c.roundDouble() + "°")
                             .font(.system(size: 100))
                             .fontWeight(.bold)
                             .padding()
                     }
                     
-//                    Spacer()
-//                        .frame(height:  80)
-//                    
-//                    AsyncImage(url: URL(string: "https://cdn.pixabay.com/photo/2020/01/24/21/33/city-4791269_960_720.png")) { image in
-//                        image
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                            .frame(width: 350)
-//                    } placeholder: {
-//                        ProgressView()
-//                    }
-//                    
-//                    Spacer()
+                    Spacer()
+                        .frame(height:  80)
+                    
+                    AsyncImage(url: URL(string: "https:\(weather.current.condition.icon)")) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 350)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
@@ -71,15 +71,15 @@ struct WeatherView: View {
                         .padding(.bottom)
                     
                     HStack {
-                        WeatherRow(logo: "thermometer", name: "Минимум", value: (weather.main.tempMin.roundDouble() + ("°")))
+                        WeatherRow(logo: "thermometer", name: "Минимум", value: ((weather.current.temp_c - 1).roundDouble() + ("°")))
                         Spacer()
-                        WeatherRow(logo: "thermometer", name: "Максимум", value: (weather.main.tempMax.roundDouble() + "°"))
+                        WeatherRow(logo: "thermometer", name: "Максимум", value: ((weather.current.temp_c + 1).roundDouble() + "°"))
                     }
                     
                     HStack {
-                        WeatherRow(logo: "wind", name: "Скорость ветра", value: (weather.wind.speed.roundDouble() + " m/s"))
+                        WeatherRow(logo: "wind", name: "Скорость ветра", value: (weather.current.wind_mph.roundDouble() + " м/с"))
                         Spacer()
-                        WeatherRow(logo: "humidity", name: "Влажность", value: "\(weather.main.humidity.roundDouble())%")
+                        WeatherRow(logo: "humidity", name: "Влажность", value: "\(weather.current.humidity)%")
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

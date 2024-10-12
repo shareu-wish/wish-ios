@@ -10,10 +10,9 @@ import CoreLocation
 
 class WeatherManager {
     // HTTP request to get the current weather depending on the coordinates we got from LocationManager
-    func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> ResponseBody {
-        // Replace YOUR_API_KEY in the link below with your own
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=1bb420df9ec1dc29e9b3c11aef732616&units=metric") else { fatalError("Missing URL") }
-
+    func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> WeatherBody {
+        guard let url = URL(string: "https://api.weatherapi.com/v1/current.json?key=bbf4cb5087124d55bc305920241210&q=\(latitude),\(longitude)&aqi=no")
+        else { fatalError("Missing URL") }
 
         let urlRequest = URLRequest(url: url)
         
@@ -21,50 +20,62 @@ class WeatherManager {
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
         
-        let decodedData = try JSONDecoder().decode(ResponseBody.self, from: data)
+        let decodedData = try JSONDecoder().decode(WeatherBody.self, from: data)
         
         return decodedData
     }
 }
 
-// Model of the response body we get from calling the OpenWeather API
-struct ResponseBody: Decodable {
-    var coord: CoordinatesResponse
-    var weather: [WeatherResponse]
-    var main: MainResponse
-    var name: String
-    var wind: WindResponse
-
-    struct CoordinatesResponse: Decodable {
-        var lon: Double
+struct WeatherBody: Decodable {
+    var location: LocationResponse
+    var current: WeatherResponse
+    
+    struct LocationResponse: Decodable {
+        var name: String
+        var region: String
+        var country: String
         var lat: Double
-    }
-
-    struct WeatherResponse: Decodable {
-        var id: Double
-        var main: String
-        var description: String
-        var icon: String
-    }
-
-    struct MainResponse: Decodable {
-        var temp: Double
-        var feels_like: Double
-        var temp_min: Double
-        var temp_max: Double
-        var pressure: Double
-        var humidity: Double
+        var lon: Double
+        var tz_id: String
+        var localtime_epoch: Int
+        var localtime: String
     }
     
-    struct WindResponse: Decodable {
-        var speed: Double
-        var deg: Double
+    struct WeatherResponse: Decodable {
+        var last_updated_epoch: Int
+        var last_updated: String
+        var temp_c: Double
+        var temp_f: Double
+        var is_day: Int
+        var condition: ConditionResponse
+        var wind_mph: Double
+        var wind_kph: Double
+        var wind_degree: Int
+        var wind_dir: String
+        var pressure_mb: Double
+        var pressure_in: Double
+        var precip_mm: Double
+        var precip_in: Double
+        var humidity: Int
+        var cloud: Int
+        var feelslike_c: Double
+        var feelslike_f: Double
+        var windchill_c: Double
+        var windchill_f: Double
+        var heatindex_c: Double
+        var heatindex_f: Double
+        var dewpoint_c: Double
+        var dewpoint_f: Double
+        var vis_km: Double
+        var vis_miles: Double
+        var uv: Double
+        var gust_mph: Double
+        var gust_kph: Double
+    }
+
+    struct ConditionResponse: Decodable {
+        var text: String
+        var icon: String
+        var code: Int
     }
 }
-
-extension ResponseBody.MainResponse {
-    var feelsLike: Double { return feels_like }
-    var tempMin: Double { return temp_min }
-    var tempMax: Double { return temp_max }
-}
-

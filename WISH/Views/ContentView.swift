@@ -11,7 +11,7 @@ struct ContentView: View {
     // Replace YOUR_API_KEY in WeatherManager with your own API key for the app to work
     @StateObject var locationManager = LocationManager()
     var weatherManager = WeatherManager()
-    @State var weather: ResponseBody?
+    @State var weather: WeatherBody?
     
     var body: some View {
         VStack {

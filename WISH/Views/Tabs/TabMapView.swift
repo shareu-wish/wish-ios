@@ -6,15 +6,27 @@
 //
 
 import SwiftUI
+import WebKit
 import SafariServices
 
 struct TabMapView: UIViewControllerRepresentable{
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<TabMapView>) -> SFSafariViewController {
-        SFSafariViewController(url: URL(string: Strings.mapURL)!)
-    }
-    
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<TabMapView>) {}
+    func makeUIViewController(context: UIViewControllerRepresentableContext<TabMapView>) -> UIViewController {
+           let webView = WKWebView()
+           let viewController = UIViewController()
+           viewController.view = webView
+           
+           if let url = URL(string: Strings.mapURL) {
+               let request = URLRequest(url: url)
+               webView.load(request)
+           }
+           
+           return viewController
+       }
+       
+       func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<TabMapView>) {
+           // Обновление логики при необходимости
+       }
 }
 
 #Preview {

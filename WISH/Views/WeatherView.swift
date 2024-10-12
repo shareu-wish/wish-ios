@@ -18,8 +18,8 @@ struct WeatherView: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            VStack {
-                VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
                     Text(weather.location.name)
                         .bold()
                         .font(.title)
@@ -42,18 +42,14 @@ struct WeatherView: View {
                                 .frame(width: 64)
                         } placeholder: {
                             ProgressView()
-                        }
+                        }.frame(width:64, height:64)
                         
                         Text(weather.current.condition.text)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
                     HStack {
-                        VStack {
-                            WeatherRow(logo: "cloud", name: "Облачность", value: "\(weather.current.cloud) %")
-                            
-                        }
-                        .frame(width: 150, alignment: .leading)
+                        WeatherRow(logo: "cloud", name: "Облачность", value: "\(weather.current.cloud) %")
                         
                         Spacer()
                         
@@ -63,10 +59,6 @@ struct WeatherView: View {
                             .padding()
                     }
                     
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                
-                VStack {
                     
                     HStack {
                         WeatherRow(logo: "thermometer", name: "Минимум", value: ((weather.current.temp_c - 1).roundDouble() + ("°")))
@@ -79,29 +71,24 @@ struct WeatherView: View {
                         Spacer()
                         WeatherRow(logo: "humidity", name: "Влажность", value: "\(weather.current.humidity)%")
                     }
-                }
-            
 
-                VStack {
                     Spacer()
                     if (weather.current.humidity > 50) {
                         Text("Возьмите с собой зонт")
                             .bold()
                             .font(.title)
-                    } else {
-                        Text("Дожди маловероятны")
-                            .bold()
-                            .font(.title)
                     }
                     Spacer()
                 }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .center)
-
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                
+                Spacer()
+                
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .navigationBarTitle(Text(""), displayMode: .inline)
         .preferredColorScheme(colorSceme)
     }
 }

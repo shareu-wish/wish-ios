@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct TabContainer<Container: View>: View {
     
     let view: Container

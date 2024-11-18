@@ -11,7 +11,6 @@ import SafariServices
 
 struct TabProfileView: UIViewControllerRepresentable{
     
-    
     func makeUIViewController(context: UIViewControllerRepresentableContext<TabProfileView>) -> UIViewController {
            let webView = WKWebView()
            let viewController = UIViewController()

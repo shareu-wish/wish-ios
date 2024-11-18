@@ -8,7 +8,8 @@
 import Foundation
 
 enum Tab {
-    case weather
+    case qr
     case map
+    case weather
     case profile
 }

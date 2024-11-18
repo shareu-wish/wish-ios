@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 struct Images {
-    
-    static let weather = Image(systemName: "cloud")
+    static let qr = Image(systemName: "qrcode")
     static let map = Image(systemName: "map")
+    static let weather = Image(systemName: "cloud")
     static let profile = Image(systemName: "person")
     
     static let plus = Image(systemName: "plus")

@@ -14,6 +14,7 @@ enum Strings {
     static let authURL = "https://shareu.ru/auth"
     
     enum Title {
+        static let qr = String(localized: "QR")
         static let map = String(localized: "Map")
         static let weather = String(localized: "Weather")
         static let profile = String(localized: "Profile")

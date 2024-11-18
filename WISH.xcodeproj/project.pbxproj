@@ -23,6 +23,7 @@
 		A5E7F07E2CEBFA6500E97DAF /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7F07D2CEBFA6500E97DAF /* QRScannerController.swift */; };
 		A5E7F0802CEBFAF300E97DAF /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7F07F2CEBFAF300E97DAF /* QRScannerView.swift */; };
 		A5E7F0842CEBFFD600E97DAF /* QRScannerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7F0832CEBFFD600E97DAF /* QRScannerCoordinator.swift */; };
+		A5E7F0862CEC027F00E97DAF /* QRScannerResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7F0852CEC027F00E97DAF /* QRScannerResultView.swift */; };
 		A5FDA1592CB9F67B00DC0BDA /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FDA1462CB9F67B00DC0BDA /* WeatherRow.swift */; };
 		A5FDA15A2CB9F67B00DC0BDA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FDA1482CB9F67B00DC0BDA /* LocationManager.swift */; };
 		A5FDA15B2CB9F67B00DC0BDA /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FDA1492CB9F67B00DC0BDA /* WeatherManager.swift */; };
@@ -54,6 +55,7 @@
 		A5E7F07D2CEBFA6500E97DAF /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		A5E7F07F2CEBFAF300E97DAF /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		A5E7F0832CEBFFD600E97DAF /* QRScannerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerCoordinator.swift; sourceTree = "<group>"; };
+		A5E7F0852CEC027F00E97DAF /* QRScannerResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerResultView.swift; sourceTree = "<group>"; };
 		A5FDA1462CB9F67B00DC0BDA /* WeatherRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
 		A5FDA1482CB9F67B00DC0BDA /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A5FDA1492CB9F67B00DC0BDA /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				A5E7F07D2CEBFA6500E97DAF /* QRScannerController.swift */,
 				A5E7F07F2CEBFAF300E97DAF /* QRScannerView.swift */,
 				A5E7F0832CEBFFD600E97DAF /* QRScannerCoordinator.swift */,
+				A5E7F0852CEC027F00E97DAF /* QRScannerResultView.swift */,
 			);
 			path = QR;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				A5FDA15C2CB9F67B00DC0BDA /* ModelData.swift in Sources */,
 				A5FDA1622CB9F67B00DC0BDA /* WelcomeView.swift in Sources */,
 				A5FDA15A2CB9F67B00DC0BDA /* LocationManager.swift in Sources */,
+				A5E7F0862CEC027F00E97DAF /* QRScannerResultView.swift in Sources */,
 				A5FDA1592CB9F67B00DC0BDA /* WeatherRow.swift in Sources */,
 				A5E7F0842CEBFFD600E97DAF /* QRScannerCoordinator.swift in Sources */,
 				A5E7F07E2CEBFA6500E97DAF /* QRScannerController.swift in Sources */,

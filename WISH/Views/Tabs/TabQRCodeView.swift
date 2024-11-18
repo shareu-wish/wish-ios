@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct TabQRCodeView: View {
+    @State var scanResult = "No QR code detected"
+    
     var body: some View {
         VStack {
-            Text("QR Code Scanner")
+            ZStack(alignment: .bottom) {
+                QRScannerView(result: $scanResult)
+                
+                Text(scanResult)
+                    .padding()
+                    .background(.black)
+                    .foregroundColor(.white)
+                    .padding(.bottom)
+            }
         }.preferredColorScheme(.dark)
     }
 }

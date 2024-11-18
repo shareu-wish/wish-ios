@@ -34,7 +34,6 @@ struct WeatherView: View {
                 
                 VStack {
                     HStack {
-                        
                         AsyncImage(url: URL(string: "https:\(weather.current.condition.icon)")) { image in
                             image
                                 .resizable()
@@ -71,7 +70,7 @@ struct WeatherView: View {
                         Spacer()
                         WeatherRow(logo: "humidity", name: "Влажность", value: "\(weather.current.humidity)%")
                     }
-
+                    
                     Spacer()
                     if (weather.current.humidity > 50) {
                         Text("Возьмите с собой зонт")

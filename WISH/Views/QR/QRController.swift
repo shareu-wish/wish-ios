@@ -8,7 +8,7 @@
 import SwiftUI
 import AVFoundation
 
-class QRScannerController: UIViewController {
+class QRController: UIViewController {
     var captureSession = AVCaptureSession()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?

@@ -9,11 +9,11 @@ import SwiftUI
 import WebKit
 import SafariServices
 
-struct QRScannerResultView: UIViewControllerRepresentable{
+struct QRResultView: UIViewControllerRepresentable{
     
     @State var link: String
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<QRScannerResultView>) -> UIViewController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<QRResultView>) -> UIViewController {
            let webView = WKWebView()
            let viewController = UIViewController()
            viewController.view = webView
@@ -26,12 +26,12 @@ struct QRScannerResultView: UIViewControllerRepresentable{
            return viewController
        }
        
-       func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<QRScannerResultView>) {
+       func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<QRResultView>) {
            // Обновление логики при необходимости
        }
 }
 
 
 #Preview {
-    QRScannerResultView(link: "https://www.google.com/")
+    QRResultView(link: "https://www.google.com/")
 }

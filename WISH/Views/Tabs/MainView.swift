@@ -15,7 +15,7 @@ struct MainView: View {
     var body: some View {
         TabView(selection: $selection) {
             TabContainer(
-                view: TabQRCodeView(),
+                view: TabQRView(),
                 title: Strings.Title.qr,
                 icon: Images.qr,
                 tab: Tab.qr

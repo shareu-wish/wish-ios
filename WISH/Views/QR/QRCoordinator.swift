@@ -8,7 +8,7 @@
 import SwiftUI
 import AVFoundation
 
-class QRScannerCoordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
+class QRCoordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     @Binding var scanResult: String
     
@@ -20,7 +20,7 @@ class QRScannerCoordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
-            scanResult = "No QR code detected"
+            scanResult = ""
             return
         }
         
